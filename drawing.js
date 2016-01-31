@@ -82,6 +82,8 @@ function addClick(x, y, dragging) {
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
+  if ( text == "erase" || text == "eraser" || text == "#FFFFFF") {
+    text = "white";}
   clickColor.push(text);
 
 }
@@ -105,6 +107,7 @@ function redraw() {
     var currColor = clickColor[i];
     if (currColor == "white") {
       context.lineWidth = 20;
+      currColor = "white";
     } else {
       context.lineWidth = 2;
     }
