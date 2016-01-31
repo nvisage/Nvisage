@@ -139,8 +139,10 @@ function changeMode() {
   isDrawMode = !isDrawMode;
   if (isDrawMode) {
     $('#switchButton').text("Add Text Box");
+    $('#canvas').css( 'cursor', 'default' );
   } else {
     $('#switchButton').text("Click To Place");
+    $('#canvas').css( 'cursor', 'pointer' );
   }
 }
 
