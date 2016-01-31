@@ -2,6 +2,7 @@ import React from 'react';
 import {Route} from 'react-router';
 
 import BoardComponent from '../board/board.jsx';
+import ThreadComponent from '../thread/thread.jsx';
 
 export default class HomeComponent extends React.Component {
   static get route(){
@@ -21,7 +22,7 @@ export default class HomeComponent extends React.Component {
           </div>
 
           <div className='col-md-3'>
-            this should be the discussion chat
+            <ThreadComponent></ThreadComponent>
           </div>
         </div>
       </div>

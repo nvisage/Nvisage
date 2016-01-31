@@ -1,0 +1,11 @@
+.replybox .replybox-buttons {
+  font-size: 12px;
+}
+
+.replybox .replybox-buttons a:hover {
+  cursor: pointer;
+}
+
+.replybox textarea {
+  width: 100%;
+}

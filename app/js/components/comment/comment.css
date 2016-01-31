@@ -1,0 +1,21 @@
+.comment {
+  font-size: 14px;
+  padding: 2px;
+}
+
+.comment .comment-material {
+  padding: 6px;
+}
+
+.comment .comment-buttons a:hover {
+  cursor: pointer;
+}
+
+.comment .comment-buttons {
+  font-size: 12px;
+}
+
+.comment .comment {
+  margin-left: 16px;
+  border-left-style: solid;
+}
