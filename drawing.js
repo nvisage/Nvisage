@@ -6,9 +6,10 @@ canvas.setAttribute('height', 400);
 canvas.setAttribute('id', 'canvas');
 canvas.setAttribute("styles", 'position:relative, z-index:0')
 canvasDiv.appendChild(canvas);
+var text = $('#colorPicker').val();
 
-if(typeof G_vmlCanvasManager != 'undefined') {
-	canvas = G_vmlCanvasManager.initElement(canvas);
+if (typeof G_vmlCanvasManager != 'undefined') {
+  canvas = G_vmlCanvasManager.initElement(canvas);
 }
 context = canvas.getContext("2d");
 
@@ -16,42 +17,48 @@ context = canvas.getContext("2d");
 var paint = false;
 var isDrawMode = true;
 
-$('#canvas').mousedown(function(e){
+$('#canvas').mousedown(function(e) {
   var mouseX = e.pageX - this.offsetLeft;
   var mouseY = e.pageY - this.offsetTop;
 
-  if(!isDrawMode){
-    console.log("TEXT");
-    var motionContainer = $("<div></div>", {"class": "Contain"});
-    var textBox = $("<textarea>Test</textarea>", {"class":"TextBox", "left":mouseX, "top":mouseY});
+  if (!isDrawMode) {
+    var motionContainer = $("<div></div>", {
+      "class": "Contain"
+    });
+    var textBox = $("<textarea>Test</textarea>", {
+      "class": "TextBox",
+      "left": mouseX,
+      "top": mouseY
+    });
+    textBox.
     motionContainer.append(textBox);
     motionContainer.draggable().resizable();
     $("#canvasDiv").append(motionContainer);
   }
-  if(isDrawMode){
+  if (isDrawMode) {
     paint = true;
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
     redraw();
   }
 });
 
-$('#canvas').mousemove(function(e){
-  if(isDrawMode){
-    if(paint){
+$('#canvas').mousemove(function(e) {
+  if (isDrawMode) {
+    if (paint) {
       addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
       redraw();
     }
   }
 });
 
-$('#canvas').mouseup(function(e){
-  if(isDrawMode){
+$('#canvas').mouseup(function(e) {
+  if (isDrawMode) {
     paint = false;
   }
 });
 
-$('#canvas').mouseleave(function(e){
-  if(isDrawMode){
+$('#canvas').mouseleave(function(e) {
+  if (isDrawMode) {
     paint = false;
   }
 });
@@ -60,54 +67,61 @@ var clickX = new Array();
 var clickY = new Array();
 var clickDrag = new Array();
 var paint;
+var clickColor = new Array();
+
 
 function addClick(x, y, dragging)
 {
+  text = $('#colorPicker').val();
+  console.log(text);
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
+  //clickColor.push(text);
+
 }
 
-function redraw(){
+
+function redraw() {
   context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
 
-  context.strokeStyle = "#df4b26";
+  context.strokeStyle = text;
   context.lineJoin = "round";
   context.lineWidth = 5;
 
-  for(var i=0; i < clickX.length; i++) {
+  for (var i = 0; i < clickX.length; i++) {
     context.beginPath();
-    if(clickDrag[i] && i){
-      context.moveTo(clickX[i-1], clickY[i-1]);
-     }else{
-       context.moveTo(clickX[i]-1, clickY[i]);
-     }
-     context.lineTo(clickX[i], clickY[i]);
-     context.closePath();
-     context.stroke();
+    if (clickDrag[i] && i) {
+      context.moveTo(clickX[i - 1], clickY[i - 1]);
+    } else {
+      context.moveTo(clickX[i] - 1, clickY[i]);
+    }
+    context.lineTo(clickX[i], clickY[i]);
+    context.closePath();
+    context.stroke();
   }
 }
 
 //save button
-$('#saveButton').click(function(){
+$('#saveButton').click(function() {
   console.log("HELLO");
   html2canvas(canvasDiv, {
-      onrendered: function (canvas) {
-          var imageData = canvas.toDataURL('image/png',1.0);
+    onrendered: function(canvas) {
+      var imageData = canvas.toDataURL('image/png', 1.0);
 
-          document.getElementById('canvasImg').src = imageData;
-   }
+      document.getElementById('canvasImg').src = imageData;
+    }
   });
 
 })
 
 //switches between draw and text
-$('#switchButton').click(function(){
+$('#switchButton').click(function() {
   console.log("SWITCH");
   isDrawMode = !isDrawMode;
-  if(isDrawMode){
+  if (isDrawMode) {
     $(this).text("DRAWING");
-  }else{
+  } else {
     $(this).text("TYPING");
   }
 })
