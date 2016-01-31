@@ -38,6 +38,7 @@ body {
 }
 .MoveBox{
   padding:10px;
-  background-color:black;
+  background-color:red;
   width:100px;
+  cursor:move;
 }

@@ -4,8 +4,12 @@ canvas = document.createElement('canvas');
 canvas.setAttribute('width', 600);
 canvas.setAttribute('height', 400);
 canvas.setAttribute('id', 'canvas');
-canvas.setAttribute("styles", 'position:relative, z-index:0')
+canvas.setAttribute("styles", 'position:relative, z-index:0');
 canvasDiv.appendChild(canvas);
+$(document).ready(function() {
+  $('#canvas').css('cursor', 'crosshair');
+});
+
 var text = $('#colorPicker').val();
 
 if (typeof G_vmlCanvasManager != 'undefined') {
@@ -17,19 +21,6 @@ context = canvas.getContext("2d");
 var paint = false;
 var isDrawMode = true;
 var isErasing = false;
-//Code for clear button by Kalvin
-
-$("#clearButton").click(function() {
-  clickX = [];
-  clickY = [];
-  clickDrag = [];
-  clickColor = [];
-  redraw(); // Clears the canvas
-  $(".TextBox").remove();
-  $(".MoveBox").remove();
-  $(".Contain").remove();
-});
-
 
 $('#canvas').mousedown(function(e) {
   var mouseX = e.pageX - this.offsetLeft;
@@ -122,6 +113,21 @@ function redraw() {
   }
 }
 
+//Code for clear button by Kalvin
+$("#clearButton").click(function() {
+  var yes = confirm("Clear Screen?");
+  if(yes){
+    clickX = [];
+    clickY = [];
+    clickDrag = [];
+    clickColor = [];
+    redraw(); // Clears the canvas
+    $(".TextBox").remove();
+    $(".MoveBox").remove();
+    $(".Contain").remove();
+  }
+
+});
 
 //save button
 $('#saveButton').click(function() {
@@ -139,25 +145,27 @@ function changeMode() {
   isDrawMode = !isDrawMode;
   if (isDrawMode) {
     $('#switchButton').text("Add Text Box");
+    $('#canvas').css('cursor', 'crosshair');
   } else {
     $('#switchButton').text("Click To Place");
+    $('#canvas').css('cursor', 'pointer');
   }
 }
 
 $('#switchButton').click(changeMode);
 
 //Change color when hover over buttons (kalvin)
-$(".Button").hover(function(){
-
-  $(this).css("background-color", "black");
-
-},
-
-function(){
-
-  $(this).css("background-color", "blue");
-
-
-}
-
+$(".Button").hover(function() {
+    $(this).css("background-color", "black");
+  },
+  function() {
+    $(this).css("background-color", "blue");
+  }
 );
+
+$('body').dblclick(function (e) {
+    var target = $(e.target);
+    if (target.is('.MoveBox')) {
+        target.remove();
+    }
+})
