@@ -1,3 +1,7 @@
+.thread {
+  padding: 4px;
+}
+
 .thread p {
   font-size: 14px;
 }

@@ -10,7 +10,7 @@ export default class ThreadComponent extends React.Component{
   render(){
     return <div className='thread'>
       <h2>{this.props.title}</h2>
-      <h6>{this.props.date}</h6>
+      <h6>{this.props.date} | submitted by {this.props.author}</h6>
       <p>{this.props.description}</p>
       <ReplyboxComponent/>
       <CommentComponent text='Hello this is a comment'>
