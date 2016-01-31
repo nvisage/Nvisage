@@ -4,8 +4,12 @@ canvas = document.createElement('canvas');
 canvas.setAttribute('width', 600);
 canvas.setAttribute('height', 400);
 canvas.setAttribute('id', 'canvas');
-canvas.setAttribute("styles", 'position:relative, z-index:0')
+canvas.setAttribute("styles", 'position:relative, z-index:0');
 canvasDiv.appendChild(canvas);
+$(document).ready(function(){
+  $('#canvas').css( 'cursor', 'crosshair' );
+});
+
 var text = $('#colorPicker').val();
 
 if (typeof G_vmlCanvasManager != 'undefined') {
@@ -139,7 +143,7 @@ function changeMode() {
   isDrawMode = !isDrawMode;
   if (isDrawMode) {
     $('#switchButton').text("Add Text Box");
-    $('#canvas').css( 'cursor', 'default' );
+    $('#canvas').css( 'cursor', 'crosshair' );
   } else {
     $('#switchButton').text("Click To Place");
     $('#canvas').css( 'cursor', 'pointer' );
