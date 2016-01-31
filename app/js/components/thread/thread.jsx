@@ -7,7 +7,7 @@ import ReplyboxComponent from '../replybox/replybox.jsx';
 import './thread.css';
 
 
-export default class ThreadComponent extends React.Component{
+class ThreadComponent extends React.Component{
   render(){
     return <div className='thread'>
       <h2>{this.props.title}</h2>

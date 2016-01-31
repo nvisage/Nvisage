@@ -14,3 +14,7 @@
   display:block;
   margin:auto;
 }
+
+.card{
+  display: inline-block;
+}

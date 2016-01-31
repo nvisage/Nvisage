@@ -16,6 +16,7 @@ import './board.css';
 
 class BoardComponent extends React.Component{
   dispatchNewCard(){
+
     let title = document.getElementById('input-title');
     let author = document.getElementById('input-author');
     let text = document.getElementById('input-text');
@@ -23,6 +24,7 @@ class BoardComponent extends React.Component{
     title.value = '';
     author.value = '';
     text.value = '';
+    window.imageData = null;
   }
 
   dispatchViewCard(reference){
@@ -163,10 +165,7 @@ class BoardComponent extends React.Component{
       }
     }
 
-    //Code for clear button by Kalvin
-    $("#clearButton").click(function() {
-      var yes = confirm("Clear Screen?");
-      if (yes) {
+    function clearScreen(){
         clickX = [];
         clickY = [];
         clickDrag = [];
@@ -175,6 +174,13 @@ class BoardComponent extends React.Component{
         $(".TextBox").remove();
         $(".MoveBox").remove();
         $(".Contain").remove();
+    }
+
+    //Code for clear button by Kalvin
+    $("#clearButton").click(function() {
+      var yes = confirm("Clear Image?");
+      if (yes) {
+        clearScreen();
       }
 
     });
@@ -282,12 +288,13 @@ const Actions = {
   }
 };
 
-const BoardReducer = (state={cards: []}, action)=>{
+const BoardReducer = (state={cards: [], threads: {}}, action)=>{
   switch(action.type){
     case 'NEW_CARD':
       let newCards = [...state.cards, CardModel(action.cardData.reference, action.cardData.title, action.cardData.date, action.cardData.author, action.cardData.text, action.cardData.image)];
       return Object.assign({}, state, {
-        cards: newCards
+        cards: newCards,
+        threads: Object.assign({}, state.threads, {[action.cardData.reference]: []})
       });
     default:
       return state;

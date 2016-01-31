@@ -1,8 +1,9 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import './card.css';
 
-export default class CardComponent extends React.Component{
+class CardComponent extends React.Component{
   render(){
     return <div className='card'>
       <div className='mdl-card mdl-shadow--6dp'>
@@ -16,10 +17,17 @@ export default class CardComponent extends React.Component{
         </div>
         <div className='mdl-card__actions mdl-card--border'>
           <a className='mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect'>
-            Delete
+            View
           </a>
         </div>
       </div>
     </div>
   }
 }
+
+
+const select = (state)=>{
+  return state;
+};
+
+export default connect(select)(CardComponent)

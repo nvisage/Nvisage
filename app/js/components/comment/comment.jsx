@@ -5,10 +5,6 @@ import ReplyboxComponent from '../replybox/replybox.jsx';
 import './comment.css';
 
 
-const replyAction = ()=>{
-
-};
-
 export default class CommentComponent extends React.Component{
   render(){
     return <div className='comment'>
