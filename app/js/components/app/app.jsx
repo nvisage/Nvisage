@@ -4,10 +4,12 @@ import {Route, IndexRoute, Redirect} from 'react-router';
 // import '../../../styles/bootstrapMdlUtil.css';
 
 // import NavComponent from '../nav/nav.jsx';
-// import CreatorComponent from '../creator/creator.jsx';
+import CreatorComponent from '../creator/creator.jsx';
 // import FooterComponent from '../footer/footer.jsx';
 // import DoesNotExistComponent from '../doesnotexist/doesnotexist.jsx';
 import HomeComponent from '../home/home.jsx';
+
+import CONFIG from '../../config.js';
 
 export default class AppComponent extends React.Component{
   static get route(){
@@ -32,8 +34,12 @@ export default class AppComponent extends React.Component{
     //   <FooterComponent/>
     //   <CreatorComponent names={config.creators} startYear={config.startYear}/>
     // </div>;
+
+    let {names, startYear} = CONFIG.creators;
+
     return <div>
       {this.props.children}
+      <CreatorComponent names={names} startYear = {startYear}/>
     </div>;
   }
 }

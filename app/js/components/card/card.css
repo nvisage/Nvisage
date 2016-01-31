@@ -1,0 +1,8 @@
+.card .mdl-card {
+  width: 256px;
+  height: 256px;
+}
+.card .mdl-card__title {
+  color: #fff;
+  background-color: #f44336;
+}

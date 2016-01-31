@@ -37,6 +37,7 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
+    "bootstrap": "^3.3.6",
     "history": "^1.17.0",
     "immutable": "^3.7.6",
     "jquery": "^2.2.0",
