@@ -1,5 +1,4 @@
 import {BoardRedux} from '../board/board.jsx';
-import {ThreadRedux} from '../thread/thread.jsx';
 
 const AppReducer = (state = {}, action)=>{
   switch(action.type){
@@ -9,6 +8,5 @@ const AppReducer = (state = {}, action)=>{
 }
 export default [
   AppReducer,
-  BoardRedux,
-  ThreadRedux
+  BoardRedux
 ]

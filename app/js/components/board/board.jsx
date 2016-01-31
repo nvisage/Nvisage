@@ -20,15 +20,11 @@ class BoardComponent extends React.Component{
     let title = document.getElementById('input-title');
     let author = document.getElementById('input-author');
     let text = document.getElementById('input-text');
-    this.props.dispatch(Actions.newCard(title.value, author.value, text.value, window.imageData));
+    this.props.dispatch(BoardActions.newCard(title.value, author.value, text.value, window.imageData));
     title.value = '';
     author.value = '';
     text.value = '';
     window.imageData = null;
-  }
-
-  dispatchViewCard(reference){
-
   }
 
   componentDidMount(){
@@ -47,7 +43,6 @@ class BoardComponent extends React.Component{
     $('#canvas').mousedown(function(e) {
       var mouseX = e.pageX - $('#canvas').offset().left;
       var mouseY = e.pageY;
-      console.log(e.pageX, e.pageY);
       if (isDrawMode) {
         paint = true;
         addClick(e.pageX - $('#canvas').offset().left, e.pageY - $('#canvas').offset().top);
@@ -240,7 +235,9 @@ class BoardComponent extends React.Component{
   render(){
     let k = [];
     let j = 0;
-    for(let card of this.props.cards){
+    for(let card of $.map(this.props.cards, (value, index)=>{
+      return [value];
+    })){
       k.push(<CardComponent key={j} reference={card.reference} title={card.title} date={card.date} author={card.author} text={card.text} image={card.image} className='dragandresize'/>);
       j++;
     }
@@ -275,27 +272,43 @@ class BoardComponent extends React.Component{
 
 const CardModel = (reference, title, date, author, text, image)=>{
   return {
-    reference, title, date, author, text, image
+    reference, title, date, author, text, image, comments: {}
   };
 }
 
-const Actions = {
+const CommentModel = (text, children)=>{
+  return {
+    text, children
+  };
+};
+
+export const BoardActions = {
   newCard: (title, author, text, image)=>{
     return {
       type: 'NEW_CARD',
       cardData: {reference: chance.guid(), title, date: new Date().toISOString(), author, text, image}
     };
+  },
+  cardView: (reference)=>{
+    console.log('reference', reference);
+    return {
+      type: 'CARD_VIEW',
+      cardReference: reference
+    };
   }
 };
 
-const BoardReducer = (state={cards: [], threads: {}}, action)=>{
+const BoardReducer = (state={cards: {}, currentCardReference: 'nothing'}, action)=>{
   switch(action.type){
     case 'NEW_CARD':
-      let newCards = [...state.cards, CardModel(action.cardData.reference, action.cardData.title, action.cardData.date, action.cardData.author, action.cardData.text, action.cardData.image)];
+      let newCard = CardModel(action.cardData.reference, action.cardData.title, action.cardData.date, action.cardData.author, action.cardData.text, action.cardData.image);
+      let newCards = Object.assign({}, state.cards, {[action.cardData.reference]: newCard});
       return Object.assign({}, state, {
         cards: newCards,
-        threads: Object.assign({}, state.threads, {[action.cardData.reference]: []})
       });
+    case 'CARD_VIEW':
+      console.log('cardview', action.cardReference);
+      return Object.assign({}, state, {currentCardReference: action.cardReference});
     default:
       return state;
   }

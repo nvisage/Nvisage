@@ -1,9 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import {BoardActions} from '../board/board.jsx';
+
 import './card.css';
 
 class CardComponent extends React.Component{
+  dispatchViewCard(){
+    console.log(this.props.reference);
+    return this.props.dispatch(BoardActions.cardView(this.props.reference));
+  }
+
   render(){
     return <div className='card'>
       <div className='mdl-card mdl-shadow--6dp'>
@@ -16,7 +23,7 @@ class CardComponent extends React.Component{
           <img src={this.props.image}/>
         </div>
         <div className='mdl-card__actions mdl-card--border'>
-          <a className='mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect'>
+          <a onClick={this.dispatchViewCard.bind(this)} className='mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect'>
             View
           </a>
         </div>
