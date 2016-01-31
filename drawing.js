@@ -103,8 +103,8 @@ $("#red").click(function() {
 $("#green").click(function() {
   $("#colorPicker").text("green");
 });
-$("#yellow").click(function() {
-  $("#colorPicker").text("yellow");
+$("#purple").click(function() {
+  $("#colorPicker").text("purple");
 });
 $("#white").click(function() {
   $("#colorPicker").text("white");
