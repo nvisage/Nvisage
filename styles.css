@@ -1,3 +1,9 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+
 .Button{
     width:100px;
     height:30px;
@@ -24,6 +30,6 @@
 }
 .MoveBox{
   padding:10px;
-  background-color:red;
+  background-color:black;
   width:100px;
 }

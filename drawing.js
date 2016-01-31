@@ -17,6 +17,19 @@ context = canvas.getContext("2d");
 var paint = false;
 var isDrawMode = true;
 var isErasing = false;
+//Code for clear button by Kalvin
+
+$("#clearButton").click(function() {
+  clickX = [];
+  clickY = [];
+  clickDrag = [];
+  clickColor = [];
+  redraw(); // Clears the canvas
+  $(".TextBox").remove();
+  $(".MoveBox").remove();
+  $(".Contain").remove();
+});
+
 
 $('#canvas').mousedown(function(e) {
   var mouseX = e.pageX - this.offsetLeft;
@@ -73,8 +86,7 @@ var paint;
 var clickColor = new Array();
 
 
-function addClick(x, y, dragging)
-{
+function addClick(x, y, dragging) {
   text = $('#colorPicker').val();
   clickX.push(x);
   clickY.push(y);
@@ -90,21 +102,20 @@ function redraw() {
   context.lineJoin = "round";
   //context.lineWidth = 5;
 
-  for(var i=0; i < clickX.length; i++)
-  {
+  for (var i = 0; i < clickX.length; i++) {
     context.beginPath();
-    if(clickDrag[i] && i){
-      context.moveTo(clickX[i-1], clickY[i-1]);
-    }else{
-      context.moveTo(clickX[i]-1, clickY[i]);
+    if (clickDrag[i] && i) {
+      context.moveTo(clickX[i - 1], clickY[i - 1]);
+    } else {
+      context.moveTo(clickX[i] - 1, clickY[i]);
     }
     context.lineTo(clickX[i], clickY[i]);
     context.closePath();
     var currColor = clickColor[i];
-    if(currColor == "white"){
+    if (currColor == "white") {
       context.lineWidth = 20;
-    }else{
-      context.lineWidth = 5;
+    } else {
+      context.lineWidth = 2;
     }
     context.strokeStyle = currColor;
     context.stroke();
@@ -114,7 +125,6 @@ function redraw() {
 
 //save button
 $('#saveButton').click(function() {
-  console.log("HELLO");
   html2canvas(canvasDiv, {
     onrendered: function(canvas) {
       var imageData = canvas.toDataURL('image/png', 1.0);
@@ -126,7 +136,7 @@ $('#saveButton').click(function() {
 })
 
 //switches between draw and text
-function changeMode(){
+function changeMode() {
   isDrawMode = !isDrawMode;
   if (isDrawMode) {
     $('#switchButton').text("Add Text Box");
