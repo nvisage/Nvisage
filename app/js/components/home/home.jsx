@@ -16,6 +16,7 @@ class HomeComponent extends React.Component {
 
   render(){
     let card = this.props.cards[this.props.currentCardReference];
+    console.log('card', card);
     return <div className='home'>
       <div className='container-fluid'>
         <div className='row'>
@@ -28,7 +29,7 @@ class HomeComponent extends React.Component {
           </div>
 
           <div className='col-md-3 col-no-padding'>
-            {card ? <ThreadComponent title={card.title} date={card.date} author={card.author} description={card.text} children={card.children}/> : <ThreadComponent title='Select a card' date='' author='' description='' children=''/>}
+            {card ? <ThreadComponent reference={card.reference} title={card.title} date={card.date} author={card.author} description={card.text} comments={card.comments}/> : <ThreadComponent title='Select a card' date='' author='author' description='' comments={new Object()}/>}
           </div>
         </div>
       </div>

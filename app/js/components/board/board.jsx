@@ -276,9 +276,9 @@ const CardModel = (reference, title, date, author, text, image)=>{
   };
 }
 
-const CommentModel = (text, children)=>{
+const CommentModel = (text, newid, parentId)=>{
   return {
-    text, children
+    text, reference: newid, parentId
   };
 };
 
@@ -290,25 +290,46 @@ export const BoardActions = {
     };
   },
   cardView: (reference)=>{
-    console.log('reference', reference);
     return {
       type: 'CARD_VIEW',
       cardReference: reference
     };
+  },
+  commentReply: (id, text)=>{
+    console.log('commentId2', id);
+    return {
+      type: 'COMMENT_REPLY',
+      commentId: id,
+      commentText: text
+    }
   }
 };
 
 const BoardReducer = (state={cards: {}, currentCardReference: 'nothing'}, action)=>{
+  let newCard;
+  let newCards;
   switch(action.type){
     case 'NEW_CARD':
-      let newCard = CardModel(action.cardData.reference, action.cardData.title, action.cardData.date, action.cardData.author, action.cardData.text, action.cardData.image);
-      let newCards = Object.assign({}, state.cards, {[action.cardData.reference]: newCard});
+      newCard = CardModel(action.cardData.reference, action.cardData.title, action.cardData.date, action.cardData.author, action.cardData.text, action.cardData.image);
+      newCards = Object.assign({}, state.cards, {[action.cardData.reference]: newCard});
       return Object.assign({}, state, {
         cards: newCards,
       });
     case 'CARD_VIEW':
-      console.log('cardview', action.cardReference);
       return Object.assign({}, state, {currentCardReference: action.cardReference});
+    case 'COMMENT_REPLY':
+      newCards = Object.assign({}, state.cards);
+      let newCId = chance.guid();
+      console.log('newcid', newCId);
+      let parent;
+      console.log(state.currentCardReference, action.commentId);
+      if(state.currentCardReference == action.commentId){
+        parent = newCards[state.currentCardReference];
+      } else {
+        parent = findById(newCards[state.currentCardReference], action.commentId);
+      }
+      parent.comments[newCId] = CommentModel(action.commentText, newCId, action.commentId);
+      return Object.assign({}, state, {cards: newCards});
     default:
       return state;
   }
@@ -321,3 +342,20 @@ const select = (state)=>{
 };
 
 export default connect(select)(BoardComponent)
+
+const findById = (o, id)=>{
+    //Early return
+    if( o.reference === id ){
+      return o;
+    }
+    var result, p;
+    for (p in o) {
+        if( o.hasOwnProperty(p) && typeof o[p] === 'object' ) {
+            result = findById(o[p], id);
+            if(result){
+                return result;
+            }
+        }
+    }
+    return result;
+};

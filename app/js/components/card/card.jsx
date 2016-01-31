@@ -7,7 +7,6 @@ import './card.css';
 
 class CardComponent extends React.Component{
   dispatchViewCard(){
-    console.log(this.props.reference);
     return this.props.dispatch(BoardActions.cardView(this.props.reference));
   }
 
