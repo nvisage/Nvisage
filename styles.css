@@ -1,0 +1,24 @@
+.Button{
+    width:100px;
+    height:30px;
+    display: inline-block;
+    margin: 0px 5px 0px 5px;
+}
+.TextBox{
+  width:100px;
+  height:30px;
+  display:block;
+  background-color:green;
+  z-index: 2;
+  position: relative;
+
+}
+.Contain{
+  width:100px;
+  height:30px;
+  display:block;
+  background-color:red;
+  z-index: 1;
+  position: relative;
+
+}
