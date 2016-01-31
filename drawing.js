@@ -76,38 +76,39 @@ var clickDrag = new Array();
 var paint;
 var clickColor = new Array();
 
-
+var currColor = "black";
 function addClick(x, y, dragging) {
-  var text = $('#colorPicker').val();
+  //var text = $('#colorPicker').val();
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
+/*
   if (text == "erase" || text == "eraser" || text == "#FFFFFF") {
     text = "white";
-  }
-  clickColor.push(text);
+  }*/
+  clickColor.push(currColor);
 }
 
 $("#black").click(function() {
-  $("#colorPicker").text("black");
+  currColor = ("black");
 });
 
 $("#blue").click(function() {
-  $("#colorPicker").text("blue");
+  currColor = ("blue");
 });
 
 $("#red").click(function() {
-  $("#colorPicker").text("red");
+  currColor = ("red");
 });
 
 $("#green").click(function() {
-  $("#colorPicker").text("green");
+  currColor = ("green");
 });
 $("#purple").click(function() {
-  $("#colorPicker").text("purple");
+  currColor = ("purple");
 });
 $("#white").click(function() {
-  $("#colorPicker").text("white");
+  currColor = ("white");
 });
 
 
