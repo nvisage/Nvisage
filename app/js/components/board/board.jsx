@@ -5,7 +5,11 @@ import {connect} from 'react-redux';
 import CardComponent from '../card/card.jsx';
 
 import _ from 'lodash';
-import chance from 'chance';
+import _chance from 'chance';
+chance = new _chance();
+import $ from 'jquery';
+import 'jquery-ui/draggable';
+import 'jquery-ui/resizable';
 
 import './board.css';
 
@@ -25,13 +29,18 @@ class BoardComponent extends React.Component{
 
   }
 
+  componentDidMount(){
+    $('.dragandresize').draggable().resizable();
+  }
+
   render(){
     let k = [];
     let j = 0;
     for(let card of this.props.cards){
-      k.push(<CardComponent key={j} reference={card.reference} title={card.title} date={card.date} author={card.author} text={card.text}/>);
+      k.push(<CardComponent key={j} reference={card.reference} title={card.title} date={card.date} author={card.author} text={card.text} className='dragandresize'/>);
       j++;
     }
+    // k = k.map((element)=>{return element.draggable().resizable();});
     return <div className='board'>
       <div className='board-main'>
         {k}

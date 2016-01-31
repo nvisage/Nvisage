@@ -4,7 +4,6 @@ import './card.css';
 
 export default class CardComponent extends React.Component{
   render(){
-    console.log(this.props);
     return <div className='card'>
       <div className='mdl-card mdl-shadow--6dp'>
         <div className='mdl-card__title mdl-card--expand'>
