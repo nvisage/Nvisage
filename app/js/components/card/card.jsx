@@ -4,18 +4,18 @@ import './card.css';
 
 export default class CardComponent extends React.Component{
   render(){
+    console.log(this.props);
     return <div className='card'>
       <div className='mdl-card mdl-shadow--6dp'>
         <div className='mdl-card__title mdl-card--expand'>
-          <h2 className='mdl-card__title-text'>Lorem Ipsum</h2>
+          <h2 className='mdl-card__title-text'>{this.props.title}</h2>
         </div>
         <div className='mdl-card__supporting-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Aenan convallis.
+          {this.props.text}
         </div>
         <div className='mdl-card__actions mdl-card--border'>
           <a className='mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect'>
-            Lorem Ipsum
+            Delete
           </a>
         </div>
       </div>

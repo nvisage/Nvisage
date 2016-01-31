@@ -14,17 +14,18 @@ class BoardComponent extends React.Component{
     let title = document.getElementById('input-title');
     let author = document.getElementById('input-author');
     let text = document.getElementById('input-text');
-    this.props.dispatch(Actions.newCard(title.value, title.value, title.value));
+    this.props.dispatch(Actions.newCard(title.value, author.value, text.value));
     title.value = '';
     author.value = '';
     text.value = '';
   }
 
   render(){
-    console.log(this.props);
-    let k = '';
-    for(let card in this.props.cards){
-      k += <CardComponent id={card.id} title={card.title} date={card.date} author={card.author} text={card.text}/>
+    let k = [];
+    let j = 0;
+    for(let card of this.props.cards){
+      k.push(<CardComponent key={j} reference={card.reference} title={card.title} date={card.date} author={card.author} text={card.text}/>);
+      j++;
     }
     return <div className='board'>
       <div className='board-main'>
@@ -40,9 +41,9 @@ class BoardComponent extends React.Component{
   }
 }
 
-const CardModel = (id, title, date, author, text)=>{
+const CardModel = (reference, title, date, author, text)=>{
   return {
-    id, title, date, author, text
+    reference, title, date, author, text
   };
 }
 
@@ -50,7 +51,7 @@ const Actions = {
   newCard: (title, author, text)=>{
     return {
       type: 'NEW_CARD',
-      cardData: {id: Math.floor(Math.random()*65536), title, date: new Date().toISOString(), author, text}
+      cardData: {reference: Math.floor(Math.random()*65536), title, date: new Date().toISOString(), author, text}
     };
   }
 };
@@ -58,7 +59,7 @@ const Actions = {
 const BoardReducer = (state={cards: []}, action)=>{
   switch(action.type){
     case 'NEW_CARD':
-      let newCards = [...state.cards, CardModel(action.cardData.id, action.cardData.title, action.cardData.date, action.cardData.author, action.cardData.text)];
+      let newCards = [...state.cards, CardModel(action.cardData.reference, action.cardData.title, action.cardData.date, action.cardData.author, action.cardData.text)];
       return Object.assign({}, state, {
         cards: newCards
       });
