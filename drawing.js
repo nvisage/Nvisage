@@ -163,7 +163,9 @@ $(".Button").hover(function() {
   }
 );
 
-
-$(".MoveBox").dblclick(function() {
-  console.log("DOUBLE CLICK");
-});
+$('body').dblclick(function (e) {
+    var target = $(e.target);
+    if (target.is('.MoveBox')) {
+        target.remove();
+    }
+})
