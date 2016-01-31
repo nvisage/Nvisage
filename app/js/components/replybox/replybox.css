@@ -1,3 +1,7 @@
+.replybox {
+  padding: 8px 2px;
+}
+
 .replybox .replybox-buttons {
   font-size: 12px;
 }

@@ -9,10 +9,12 @@ import './thread.css';
 export default class ThreadComponent extends React.Component{
   render(){
     return <div className='thread'>
+      <h2>{this.props.title}</h2>
+      <h6>{this.props.date}</h6>
+      <p>{this.props.description}</p>
       <ReplyboxComponent/>
-      <br/>
       <CommentComponent text='Hello this is a comment'>
-        <CommentComponent text='this is a reply to that comment'></CommentComponent>
+        <CommentComponent text='this is a reply to that comment' reply={true}></CommentComponent>
       </CommentComponent>
       <CommentComponent text='this is another comment'>
         <CommentComponent text='this is the reply to the second comment'>

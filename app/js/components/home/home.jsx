@@ -22,7 +22,7 @@ export default class HomeComponent extends React.Component {
           </div>
 
           <div className='col-md-3'>
-            <ThreadComponent></ThreadComponent>
+            <ThreadComponent title='this is a title' date='1/30/2016' description='this is a description'></ThreadComponent>
           </div>
         </div>
       </div>
