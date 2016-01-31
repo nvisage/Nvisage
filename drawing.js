@@ -20,7 +20,6 @@ var isDrawMode = true;
 $('#canvas').mousedown(function(e) {
   var mouseX = e.pageX - this.offsetLeft;
   var mouseY = e.pageY - this.offsetTop;
-
   if (!isDrawMode) {
     var motionContainer = $("<div></div>", {
       "class": "Contain"
@@ -30,7 +29,6 @@ $('#canvas').mousedown(function(e) {
       "left": mouseX,
       "top": mouseY
     });
-    textBox.
     motionContainer.append(textBox);
     motionContainer.draggable().resizable();
     $("#canvasDiv").append(motionContainer);
@@ -77,7 +75,7 @@ function addClick(x, y, dragging)
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
-  //clickColor.push(text);
+  clickColor.push(text);
 
 }
 
@@ -85,22 +83,24 @@ function addClick(x, y, dragging)
 function redraw() {
   context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
 
-  context.strokeStyle = text;
   context.lineJoin = "round";
   context.lineWidth = 5;
 
-  for (var i = 0; i < clickX.length; i++) {
+  for(var i=0; i < clickX.length; i++)
+  {
     context.beginPath();
-    if (clickDrag[i] && i) {
-      context.moveTo(clickX[i - 1], clickY[i - 1]);
-    } else {
-      context.moveTo(clickX[i] - 1, clickY[i]);
+    if(clickDrag[i] && i){
+      context.moveTo(clickX[i-1], clickY[i-1]);
+    }else{
+      context.moveTo(clickX[i]-1, clickY[i]);
     }
     context.lineTo(clickX[i], clickY[i]);
     context.closePath();
+    context.strokeStyle = clickColor[i];
     context.stroke();
   }
 }
+
 
 //save button
 $('#saveButton').click(function() {
