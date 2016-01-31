@@ -47,6 +47,8 @@ $('#canvas').mousedown(function(e) {
   }
 });
 
+$("#colorPicker").hide();
+
 $('#canvas').mousemove(function(e) {
   if (isDrawMode) {
     if (paint) {
@@ -86,22 +88,22 @@ function addClick(x, y, dragging) {
   clickColor.push(text);
 }
 
-$("#black").click(function(){
+$("#black").click(function() {
   $("#colorPicker").text("black");
 });
 
-$("#blue").click(function(){
+$("#blue").click(function() {
   $("#colorPicker").text("blue");
 });
 
-$("#red").click(function(){
+$("#red").click(function() {
   $("#colorPicker").text("red");
 });
 
-$("#green").click(function(){
+$("#green").click(function() {
   $("#colorPicker").text("green");
 });
-$("#yellow").click(function(){
+$("#yellow").click(function() {
   $("#colorPicker").text("yellow");
 });
 
@@ -158,16 +160,17 @@ $('#saveButton').click(function() {
       document.getElementById('canvasImg').src = imageData;
     }
   });
-})
+});
+
 
 //switches between draw and text
 function changeMode() {
   isDrawMode = !isDrawMode;
   if (isDrawMode) {
-    $('#switchButton').text("Add Text Box");
+    $('#switchButton').text("Add Text");
     $('#canvas').css('cursor', 'crosshair');
   } else {
-    $('#switchButton').text("Click To Place");
+    $('#switchButton').text("Click Board");
     $('#canvas').css('cursor', 'pointer');
   }
 }

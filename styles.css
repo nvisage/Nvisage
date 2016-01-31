@@ -39,7 +39,13 @@ body {
 }
 .MoveBox{
   padding:10px;
-  background-color:red;
+  background-color:#1296B2;
   width:100px;
   cursor:move;
+}
+
+#black,#blue,#red,#yellow,#green{
+
+  border-radius:25%;
+
 }
