@@ -132,7 +132,6 @@ $('#saveButton').click(function() {
       document.getElementById('canvasImg').src = imageData;
     }
   });
-
 })
 
 //switches between draw and text
@@ -146,3 +145,19 @@ function changeMode() {
 }
 
 $('#switchButton').click(changeMode);
+
+//Change color when hover over buttons (kalvin)
+$(".Button").hover(function(){
+
+  $(this).css("background-color", "black");
+
+},
+
+function(){
+
+  $(this).css("background-color", "blue");
+
+
+}
+
+);
