@@ -11,6 +11,8 @@ export default class CardComponent extends React.Component{
         </div>
         <div className='mdl-card__supporting-text'>
           {this.props.text}
+
+          <img src={this.props.image}/>
         </div>
         <div className='mdl-card__actions mdl-card--border'>
           <a className='mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect'>

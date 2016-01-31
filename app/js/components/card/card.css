@@ -2,10 +2,15 @@
   z-index: 1;
 }
 .card .mdl-card {
-  width: 256px;
-  height: 256px;
+  width: 500px;
+  /*height: 256px;*/
 }
 .card .mdl-card__title {
   color: #ffffff;
   background-color: #f44336;
+}
+
+.card img {
+  display:block;
+  margin:auto;
 }
