@@ -175,13 +175,13 @@ function changeMode() {
 $('#switchButton').click(changeMode);
 
 //Change color when hover over buttons (kalvin)
-$(".Button").hover(function() {
-    $(this).css("background-color", "black");
-  },
-  function() {
-    $(this).css("background-color", "blue");
-  }
-);
+// $(".Button").hover(function() {
+//     $(this).css("background-color", "blue");
+//   },
+//   function() {
+//     $(this).css("background-color", "black");
+//   }
+// );
 
 $('body').dblclick(function(e) {
   var target = $(e.target);
