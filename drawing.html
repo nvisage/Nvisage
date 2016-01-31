@@ -8,18 +8,17 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
   <script src="html2canvas.js"></script>
   <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" type="text/css" href="animate.css" />
 </head>
 
 <body>
-  <div id="canvasDiv" , style="z-index:0"></div>
-  <div id="switchButton" , class="Button" style="background-color:blue">Add Text Box</div>
-  <div id="saveButton" , class="Button" style="background-color:blue">Save</div>
-  <div id="clearButton", class="Button" style="background-color:blue">Clear</div>
-  <ul>
-    <li><img id="brush" src = "http://clipartion.com/wp-content/uploads/2015/11/artist-paint-brush-vector-free-clipart-images.png"></li>
-    <li><
-  </ul>
-  <textarea id="colorPicker" style="resize:none, width=100px, display:block">#000000</textarea>
+  <div class = "fadeInUp animated">
+    <div id="canvasDiv" , style="z-index:0"></div>
+    <div id="switchButton" , class="Button" style="background-color:blue">Add Text Box</div>
+    <div id="saveButton" , class="Button" style="background-color:blue">Save</div>
+    <div id="clearButton", class="Button" style="background-color:blue">Clear</div>
+    <textarea id="colorPicker" style="resize:none, width=100px, display:block">#000000</textarea>
+  </div>
   <img id="canvasImg">
 
   <script src="drawing.js"></script>
