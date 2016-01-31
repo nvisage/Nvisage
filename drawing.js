@@ -106,6 +106,9 @@ $("#green").click(function() {
 $("#yellow").click(function() {
   $("#colorPicker").text("yellow");
 });
+$("#white").click(function() {
+  $("#colorPicker").text("white");
+});
 
 
 function redraw() {
