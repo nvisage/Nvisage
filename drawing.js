@@ -10,8 +10,6 @@ $(document).ready(function() {
   $('#canvas').css('cursor', 'crosshair');
 });
 
-var text = $('#colorPicker').val();
-
 if (typeof G_vmlCanvasManager != 'undefined') {
   canvas = G_vmlCanvasManager.initElement(canvas);
 }
@@ -78,15 +76,34 @@ var clickColor = new Array();
 
 
 function addClick(x, y, dragging) {
-  text = $('#colorPicker').val();
+  var text = $('#colorPicker').val();
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
-  if ( text == "erase" || text == "eraser" || text == "#FFFFFF") {
-    text = "white";}
+  if (text == "erase" || text == "eraser" || text == "#FFFFFF") {
+    text = "white";
+  }
   clickColor.push(text);
-
 }
+
+$("#black").click(function(){
+  $("#colorPicker").text("black");
+});
+
+$("#blue").click(function(){
+  $("#colorPicker").text("blue");
+});
+
+$("#red").click(function(){
+  $("#colorPicker").text("red");
+});
+
+$("#green").click(function(){
+  $("#colorPicker").text("green");
+});
+$("#yellow").click(function(){
+  $("#colorPicker").text("yellow");
+});
 
 
 function redraw() {
@@ -119,7 +136,7 @@ function redraw() {
 //Code for clear button by Kalvin
 $("#clearButton").click(function() {
   var yes = confirm("Clear Screen?");
-  if(yes){
+  if (yes) {
     clickX = [];
     clickY = [];
     clickDrag = [];
@@ -166,9 +183,18 @@ $(".Button").hover(function() {
   }
 );
 
-$('body').dblclick(function (e) {
-    var target = $(e.target);
-    if (target.is('.MoveBox')) {
-        target.remove();
-    }
+$('body').dblclick(function(e) {
+  var target = $(e.target);
+  if (target.is('.MoveBox')) {
+    target.remove();
+  }
 })
+
+//color palette kalvin
+// $("#colors").hide();
+//
+// $("#black").mouseover(function(){
+//
+//   $("#colors").slideDown("slow");
+//
+// });
