@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import CardComponent from '../card/card.jsx';
 
 import _ from 'lodash';
+import chance from 'chance';
 
 import './board.css';
 
@@ -18,6 +19,10 @@ class BoardComponent extends React.Component{
     title.value = '';
     author.value = '';
     text.value = '';
+  }
+
+  dispatchViewCard(reference){
+
   }
 
   render(){
@@ -51,7 +56,7 @@ const Actions = {
   newCard: (title, author, text)=>{
     return {
       type: 'NEW_CARD',
-      cardData: {reference: Math.floor(Math.random()*65536), title, date: new Date().toISOString(), author, text}
+      cardData: {reference: chance.guid(), title, date: new Date().toISOString(), author, text}
     };
   }
 };
@@ -68,7 +73,7 @@ const BoardReducer = (state={cards: []}, action)=>{
   }
 }
 
-export const BoardRedux = {Actions, BoardReducer};
+export const BoardRedux = {BoardReducer};
 
 const select = (state)=>{
   return state.BoardReducer;

@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import CommentComponent from '../comment/comment.jsx';
 import ReplyboxComponent from '../replybox/replybox.jsx';
@@ -24,3 +25,29 @@ export default class ThreadComponent extends React.Component{
     </div>
   }
 }
+
+const Actions = {
+  cardView: (reference)=>{
+    return {
+      type: 'CARD_VIEW',
+      cardReference: reference
+    };
+  }
+}
+
+const ThreadReducer = (state={currentCardReference: 'nothing'}, action)=>{
+  switch(action.type){
+    case 'CARD_VIEW':
+      return Object.assign({}, state, {currentCardReference: action.cardReference});
+    default:
+      return state;
+  }
+}
+
+export const ThreadRedux = {ThreadReducer};
+
+const select = (state)=>{
+  return state.ThreadReducer;
+};
+
+export default connect(select)(ThreadComponent)

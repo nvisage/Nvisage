@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
+    "chance": "^0.8.0",
     "history": "^1.17.0",
     "immutable": "^3.7.6",
     "jquery": "^2.2.0",
